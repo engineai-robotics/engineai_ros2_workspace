@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-model href="" schematypens=""?>
+<package format="3">
+  <name>mujoco_simulator</name>
+  <version>0.0.1</version>
+  <description>1 </description>
+  <maintainer email="info@engineai.com.cn">maintainer</maintainer>
+  <license>BSD 3-Clause</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>interface_protocol</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

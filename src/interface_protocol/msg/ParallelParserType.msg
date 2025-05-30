@@ -1,0 +1,2 @@
+uint8 CLASSIC_PARSER = 0
+uint8 RL_PARSER = 1

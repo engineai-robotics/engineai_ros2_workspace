@@ -1,0 +1,87 @@
+# mlp net parameters
+policy_file: "policies/pm01_v2_rough_ppo_42obs.mnn"
+num_observations: 42
+num_commands: 3
+num_clock_signal: 2
+
+active_joint_names:
+  [
+    "J00_HIP_PITCH_L",
+    "J01_HIP_ROLL_L",
+    "J02_HIP_YAW_L",
+    "J03_KNEE_PITCH_L",
+    "J04_ANKLE_PITCH_L",
+    "J05_ANKLE_ROLL_L",
+    "J06_HIP_PITCH_R",
+    "J07_HIP_ROLL_R",
+    "J08_HIP_YAW_R",
+    "J09_KNEE_PITCH_R",
+    "J10_ANKLE_PITCH_R",
+    "J11_ANKLE_ROLL_R",
+  ]
+
+active_joint_idx:
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+num_include_obs_steps: 15
+mix: False
+# observation parameters
+observation_scale_linear_vel: 2.0
+observation_scale_angular_vel: 1.0
+observation_scale_dof_pos: 1.0
+observation_scale_dof_vel: 0.05
+observation_scale_quat: 1.0
+observation_clip: 100.0
+
+# gait parameters
+cycle_time: 0.8
+still_ratio: 0.
+
+# joint control parameters
+action_clip: 100.0
+default_joint_q:
+  - [-0.24, 0.0, 0.0, 0.48, -0.24, 0.0]
+  - [-0.24, 0.0, 0.0, 0.48, -0.24, 0.0]
+  - [0.0]
+  - [0.0, 0.0, 0.0, 0.0, 0.0]
+  - [0.0, 0.0, 0.0, 0.0, 0.0]
+  - [0.0]
+
+joint_kp:
+  - [70, 50, 50, 70, 20, 20]
+  - [70, 50, 50, 70, 20, 20]
+  - [200]
+  - [250, 250, 250, 250, 250]
+  - [250, 250, 250, 250, 250]
+  - [100]
+
+joint_kd:
+  - [7.0, 5.0, 5.0, 7.0, 0.2, 0.2]
+  - [7.0, 5.0, 5.0, 7.0, 0.2, 0.2]
+  - [1]
+  - [1, 1, 1, 1, 1]
+  - [1, 1, 1, 1, 1]
+  - [1]
+
+action_scale:
+  - [0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+  - [0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+
+control_dt: 0.01
+
+# sim to real fine tune parameters
+enable_remote_command_lpf: false
+remote_command_sampling_frequency: 50.0
+remote_command_cut_off_frequency: 0.1
+command_scale: [1.0, 0.7, 0.8]
+command_bias: [0.0, 0.0, 0.0]
+linear_vel_delta_bias: 0.001
+angular_vel_delta_bias: 0.001
+imu_install_delta_bias: 0.001
+imu_install_bias: [0,0.015,0]
+transition_time: 0.5
+# # Replaces the following limbs with multiple motion planner
+# replaced_limbs:
+#   - waist
+#   - left_arm
+#   - right_arm

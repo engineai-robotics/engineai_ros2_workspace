@@ -1,0 +1,13 @@
+<mujoco model = "chair">
+
+    <worldbody>
+        <body name="chair" pos="-0.20 0 0.475">
+            <geom name="chair_box" type="box" size="0.2 0.20 0.02" pos="0 0 0" mass="10" class="collision"/>
+            <geom name="chair_cylinder_front_left" type="cylinder" size="0.02 0.23" pos="0.2 0.18 -0.23" mass="10" class="collision"/>
+            <geom name="chair_cylinder_front_right" type="cylinder" size="0.02 0.23" pos="0.2 -0.18 -0.23" mass="10" class="collision"/>
+            <geom name="chair_cylinder_behind_left" type="cylinder" size="0.02 0.23" pos="-0.2 0.18 -0.23" mass="10" class="collision"/>
+            <geom name="chair_cylinder_behind_right" type="cylinder" size="0.02 0.23" pos="-0.2 -0.18 -0.23" mass="10" class="collision"/>
+        </body>
+    </worldbody>
+
+</mujoco>

@@ -1,0 +1,9 @@
+.vscode/
+.idea/
+.cache/
+install/
+build/
+log/
+rosbag2_*/
+__pycache__/
+*.pyc

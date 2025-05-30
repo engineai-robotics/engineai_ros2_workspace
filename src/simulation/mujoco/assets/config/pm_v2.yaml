@@ -1,0 +1,14 @@
+urdf: serial_pm_v2.urdf
+xml: pm_v2.xml
+
+model_param:
+  num_total_joints: 24
+  num_contacts: 4
+  num_single_contact_dimensions: 2
+
+sensor:
+  imu_topic: /hardware/imu_info
+
+actuator:
+  joint_state_topic: /hardware/joint_state
+  joint_command_topic: /hardware/joint_command
