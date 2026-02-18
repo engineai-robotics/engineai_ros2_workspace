@@ -1,10 +1,20 @@
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 import os
 
 
 def generate_launch_description():
+    # get command line arguments
+    command_topic_arg = DeclareLaunchArgument(
+        'joint_command_topic',
+        default_value='/hardware/joint_command',
+        description='Target topic name for remapping /hardware/joint_command'
+    )
+    target_topic = LaunchConfiguration('joint_command_topic')
+
     # Get package path using get_package_share_directory
     package_dir = get_package_share_directory('interface_example')
 
@@ -30,10 +40,12 @@ def generate_launch_description():
         executable='rl_basic_example',
         name='rl_basic_example',
         arguments=[config_dir],
+        remappings=[('/hardware/joint_command', target_topic)],
         output='screen',
         emulate_tty=True,
     )
 
     return LaunchDescription([
+        command_topic_arg,
         hardware_node
     ])
