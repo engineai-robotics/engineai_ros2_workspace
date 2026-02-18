@@ -1,0 +1,32 @@
+ekf_node:
+  ros__parameters:
+    frequency: 50.0
+    sensor_timeout: 0.1
+    two_d_mode: false
+
+    # frames
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: LINK_BASE
+    world_frame: odom          # use world if IMU only
+    publish_tf: true
+
+    # IMU
+    imu0: /imu/data_raw
+
+    # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
+    imu0_config: [
+      false, false, false,
+      true,  true,  true,
+      false, false, false,
+      true,  true,  true,
+      false, false, false
+    ]
+
+    imu0_differential: false
+    imu0_relative: false
+
+    # set false if IMU contains gravity value
+    imu0_remove_gravitational_acceleration: true
+
+    # initial_state: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
