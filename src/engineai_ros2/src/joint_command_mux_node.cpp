@@ -264,7 +264,6 @@ private:
     // 2) Apply upper-body override from ROS if enabled.
     if (upper_source_ == "ros" && ros_msg) {
       for (const size_t idx : upper_body_indices_) {
-	RCLCPP_INFO(get_logger(), "idx %ld ros:%7.3f rl:%7.3f", idx, ros_msg->position[idx], out_msg->position[idx]);
         copy_or_blend(out_msg->position, ros_msg->position, idx, 0.0);
         if (!blend_position_only_) {
           copy_or_blend(out_msg->velocity, ros_msg->velocity, idx, 0.0);

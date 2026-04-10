@@ -5,24 +5,16 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    joint_trajectory_controller:
+    # Upper-body controller: waist, both arms, and head.
+    # Leg joints are state-only and controlled by the onboard RL locomotion controller.
+    # Starts INACTIVE; activate with:
+    #   ros2 control set_controller_state upper_body_controller active
+    upper_body_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
-joint_trajectory_controller:
+upper_body_controller:
   ros__parameters:
     joints:
-      - J00_HIP_PITCH_L
-      - J01_HIP_ROLL_L
-      - J02_HIP_YAW_L
-      - J03_KNEE_PITCH_L
-      - J04_ANKLE_PITCH_L
-      - J05_ANKLE_ROLL_L
-      - J06_HIP_PITCH_R
-      - J07_HIP_ROLL_R
-      - J08_HIP_YAW_R
-      - J09_KNEE_PITCH_R
-      - J10_ANKLE_PITCH_R
-      - J11_ANKLE_ROLL_R
       - J12_WAIST_YAW
       - J13_SHOULDER_PITCH_L
       - J14_SHOULDER_ROLL_L
@@ -39,8 +31,3 @@ joint_trajectory_controller:
       - position
     state_interfaces:
       - position
-  
-# forward_position_controller:
-#   ros__parameters:
-#     type: forward_command_controller/ForwardCommandController
-#    interface_name: position
