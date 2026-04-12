@@ -31,3 +31,7 @@ upper_body_controller:
       - position
     state_interfaces:
       - position
+    # When a new rqt goal preempts the current one, start the next trajectory
+    # from the last *commanded* position (not the actual joint position).
+    # This prevents velocity discontinuities at preemption and eliminates jerkiness.
+    open_loop_control: true
