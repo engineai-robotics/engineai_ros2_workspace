@@ -7,38 +7,26 @@
   <maintainer email="kei.okada@gmail.com">Kei Okada</maintainer>
   <license>Apache-2.0</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+
   <build_depend>mujoco_simulator</build_depend>
-  <build_depend>ros2_control_cmake</build_depend>
 
-  <depend>rclcpp</depend>
   <depend>geometry_msgs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>std_srvs</depend>
-  <depend>interface_protocol</depend>
   <depend>hardware_interface</depend>
+  <depend>interface_protocol</depend>
   <depend>pluginlib</depend>
+  <depend>rclcpp</depend>
   <depend>rclcpp_lifecycle</depend>
+  <depend>sensor_msgs</depend>
 
-  <exec_depend>ros2_control</exec_depend>
-  <exec_depend>ros2_controllers</exec_depend>
   <exec_depend>controller_manager</exec_depend>
-  <exec_depend>forward_command_controller</exec_depend>
-  <exec_depend>interface_example</exec_depend>
   <exec_depend>joint_state_broadcaster</exec_depend>
-  <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>joint_trajectory_controller</exec_depend>
-  <exec_depend>robot_localization</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>ros2controlcli</exec_depend>
-  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>ros2_control</exec_depend>
   <exec_depend>rqt_joint_trajectory_controller</exec_depend>
-  <exec_depend>rqt_robot_steering</exec_depend>
   <exec_depend>rviz2</exec_depend>
   <exec_depend>xacro</exec_depend>
-
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
