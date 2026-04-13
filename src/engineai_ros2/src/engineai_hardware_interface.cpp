@@ -50,24 +50,26 @@ hardware_interface::CallbackReturn EngineAI_SystemPositionOnlyHardware::on_init(
 
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
-    // Each joint may have 0 or 1 command interface.
-    // Leg joints (HIP/KNEE/ANKLE) are state-only; upper-body joints have command + state.
-    if (joint.command_interfaces.size() > 1)
+    // Each joint may have 0, 1, or 2 command interfaces.
+    // Leg joints (HIP/KNEE/ANKLE) are state-only; upper-body joints have position + velocity.
+    if (joint.command_interfaces.size() > 2)
     {
       RCLCPP_FATAL(
-        get_logger(), "Joint '%s' has %zu command interfaces. 0 or 1 expected.",
+        get_logger(), "Joint '%s' has %zu command interfaces. 0, 1, or 2 expected.",
         joint.name.c_str(), joint.command_interfaces.size());
       return hardware_interface::CallbackReturn::ERROR;
     }
 
-    if (joint.command_interfaces.size() == 1 &&
-      joint.command_interfaces[0].name != hardware_interface::HW_IF_POSITION)
-    {
-      RCLCPP_FATAL(
-        get_logger(), "Joint '%s' has '%s' command interface. '%s' expected.",
-        joint.name.c_str(), joint.command_interfaces[0].name.c_str(),
-        hardware_interface::HW_IF_POSITION);
-      return hardware_interface::CallbackReturn::ERROR;
+    for (const auto & ci : joint.command_interfaces) {
+      if (ci.name != hardware_interface::HW_IF_POSITION &&
+          ci.name != hardware_interface::HW_IF_VELOCITY) {
+        RCLCPP_FATAL(
+          get_logger(), "Joint '%s' has unexpected command interface '%s'. "
+          "'%s' or '%s' expected.",
+          joint.name.c_str(), ci.name.c_str(),
+          hardware_interface::HW_IF_POSITION, hardware_interface::HW_IF_VELOCITY);
+        return hardware_interface::CallbackReturn::ERROR;
+      }
     }
 
     if (joint.state_interfaces.size() != 1)
@@ -233,9 +235,14 @@ hardware_interface::CallbackReturn EngineAI_SystemPositionOnlyHardware::on_activ
     RCLCPP_INFO(get_logger(), "%.1f seconds left...", hw_start_sec_ - i);
   }
 
-  // Initialize command interfaces to current state to avoid jumps
+  // Initialize position command interfaces to current state to avoid jumps.
+  // Velocity command interfaces have no matching state interface; start at 0.
   for (const auto & [name, descr] : joint_command_interfaces_) {
-    set_command(name, get_state(name));
+    if (name.find(hardware_interface::HW_IF_VELOCITY) != std::string::npos) {
+      set_command(name, 0.0);
+    } else {
+      set_command(name, get_state(name));
+    }
   }
 
   RCLCPP_INFO(get_logger(), "Successfully activated!");
@@ -322,7 +329,7 @@ hardware_interface::return_type EngineAI_SystemPositionOnlyHardware::write(
 
   const size_t nc = command_joint_names_.size();
   cmd.position.reserve(nc);
-  cmd.velocity.assign(nc, 0.0);
+  cmd.velocity.reserve(nc);
   cmd.feed_forward_torque.assign(nc, 0.0);
   cmd.torque.assign(nc, 0.0);
   cmd.stiffness = command_stiffness_;
@@ -330,6 +337,9 @@ hardware_interface::return_type EngineAI_SystemPositionOnlyHardware::write(
 
   for (const auto & name : command_joint_names_) {
     cmd.position.push_back(get_command(name + "/position"));
+    // Feed forward JTC-interpolated velocity so the onboard PD can track smoothly.
+    // τ = k*(q_cmd - q) + d*(dq_cmd - dq)  →  d-term ≈ 0 during motion → no "gah"
+    cmd.velocity.push_back(get_command(name + "/velocity"));
   }
 
   joint_pub_->publish(cmd);

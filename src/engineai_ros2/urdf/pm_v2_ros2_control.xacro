@@ -61,50 +61,62 @@
       <!-- Upper body joints (command + state) -->
       <joint name="J12_WAIST_YAW">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J13_SHOULDER_PITCH_L">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J14_SHOULDER_ROLL_L">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J15_SHOULDER_YAW_L">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J16_ELBOW_PITCH_L">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J17_ELBOW_YAW_L">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J18_SHOULDER_PITCH_R">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J19_SHOULDER_ROLL_R">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J20_SHOULDER_YAW_R">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J21_ELBOW_PITCH_R">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J22_ELBOW_YAW_R">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
       <joint name="J23_HEAD_YAW">
 	<command_interface name="position"/>
+	<command_interface name="velocity"/>
 	<state_interface name="position"/>
       </joint>
     </ros2_control>

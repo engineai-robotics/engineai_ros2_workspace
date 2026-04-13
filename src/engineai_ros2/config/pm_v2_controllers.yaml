@@ -29,6 +29,7 @@ upper_body_controller:
       - J23_HEAD_YAW
     command_interfaces:
       - position
+      - velocity
     state_interfaces:
       - position
     # When a new rqt goal preempts the current one, start the next trajectory
