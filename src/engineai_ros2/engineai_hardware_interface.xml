@@ -1,0 +1,9 @@
+<library path="engineai_hardware_interface">
+  <class name="engineai_hardware_interface/EngineAI_SystemPositionOnlyHardware"
+         type="engineai_hardware_interface::EngineAI_SystemPositionOnlyHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      EngineAI ros2_control system hardware interface plugins (PM‑V2 today; extendable to other robots).
+    </description>
+  </class>
+</library>

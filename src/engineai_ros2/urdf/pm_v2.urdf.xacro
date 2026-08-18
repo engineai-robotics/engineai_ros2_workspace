@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<!--
+Copied and modified from ROS1 example -
+https://github.com/ros-simulation/gazebo_ros_demos/blob/kinetic-devel/rrbot_description/urdf/rrbot.xacro
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pm_v2">
+  <xacro:arg name="prefix" default="" />
+
+  <!-- Import pm_v2 macro -->
+  <xacro:include filename="$(find engineai_ros2)/resource/robot/pm_v2/urdf/serial_pm_v2.urdf" />
+
+  <!-- Import pm_v2 ros2_control description -->
+  <xacro:include filename="$(find engineai_ros2)/urdf/pm_v2_ros2_control.xacro" />
+
+  <!-- Used for fixing robot -->
+  <!-- <link name="world"/> -->
+  <!-- <joint name="world_base_joint" type="fixed"> -->
+  <!--   <origin xyz="0 0 0" rpy="0 0 0" /> -->
+  <!--   <parent link="world"/> -->
+  <!--   <child link="LINK_BASE" /> -->
+  <!-- </joint> -->
+
+  <xacro:pm_v2_ros2_control
+    name="pm_v2" prefix="$(arg prefix)" />
+
+</robot>
