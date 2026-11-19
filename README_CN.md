@@ -4,7 +4,7 @@
 
 ## 概述
 
-EngineAI ROS 是一个 ROS2 Workspace，包含了 EngineAI 机器人的 ROS2 接口和一些示例代码。
+EngineAI ROS 是一个 ROS2 Workspace，包含了 EngineAI 机器人的 ROS2 接口和一些示例代码。本仓库是 ROS 用例仓库。如需了解 SDK，请参阅 [EngineAI Robotics SDK](https://github.com/engineai-robotics/engineai_robotics_sdk)。
 
 ## ROS2 接口协议
 
@@ -66,6 +66,10 @@ echo -e '\nexport ROS_DOMAIN_ID=69\nexport ROS_LOCALHOST_ONLY=0\nexport RMW_IMPL
 ```
 
 ### 连接机器人
+
+### 仿真仓库
+
+现已推出独立的仿真环境，建议使用 [EngineAI 机器人仿真环境](https://github.com/engineai-robotics/engineai_robot_simulation_runtime) 进行仿真测试。
 
 #### 仿真器（当前仿真只支持关节桥接模式下的接口）
 

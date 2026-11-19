@@ -6,7 +6,7 @@
 
 ## Overview
 
-EngineAI ROS is a ROS2 Workspace that includes the ROS2 interface and example code for EngineAI robots.
+EngineAI ROS is a ROS2 Workspace that includes the ROS2 interface and example code for EngineAI robots. This repository provides ROS use cases. To learn about the SDK, see [EngineAI Robotics SDK](https://github.com/engineai-robotics/engineai_robotics_sdk).
 
 ## ROS2 Interface Protocol
 
@@ -68,6 +68,10 @@ echo -e '\nexport ROS_DOMAIN_ID=69\nexport ROS_LOCALHOST_ONLY=0\nexport RMW_IMPL
 ```
 
 ### Connect to the Robot
+
+### Simulation Repository
+
+An independent simulation environment is now available. We recommend using [EngineAI Robot Simulation Environment](https://github.com/engineai-robotics/engineai_robot_simulation_runtime) for simulation testing.
 
 #### Simulator (Currently only supports simulation in joint bridge mode)
 
