@@ -1,0 +1,38 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # Upper-body controller: waist, both arms, and head.
+    # Leg joints are state-only and controlled by the onboard RL locomotion controller.
+    # Starts INACTIVE; activate with:
+    #   ros2 control set_controller_state upper_body_controller active
+    upper_body_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+upper_body_controller:
+  ros__parameters:
+    joints:
+      - J12_WAIST_YAW
+      - J13_SHOULDER_PITCH_L
+      - J14_SHOULDER_ROLL_L
+      - J15_SHOULDER_YAW_L
+      - J16_ELBOW_PITCH_L
+      - J17_ELBOW_YAW_L
+      - J18_SHOULDER_PITCH_R
+      - J19_SHOULDER_ROLL_R
+      - J20_SHOULDER_YAW_R
+      - J21_ELBOW_PITCH_R
+      - J22_ELBOW_YAW_R
+      - J23_HEAD_YAW
+    command_interfaces:
+      - position
+      - velocity
+    state_interfaces:
+      - position
+    # When a new rqt goal preempts the current one, start the next trajectory
+    # from the last *commanded* position (not the actual joint position).
+    # This prevents velocity discontinuities at preemption and eliminates jerkiness.
+    open_loop_control: true

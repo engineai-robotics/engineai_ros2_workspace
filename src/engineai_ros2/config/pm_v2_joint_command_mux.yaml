@@ -1,0 +1,28 @@
+joint_command_mux:
+  ros__parameters:
+    transition_time: 2.0
+    joint_names:
+      - J00_HIP_PITCH_L
+      - J01_HIP_ROLL_L
+      - J02_HIP_YAW_L
+      - J03_KNEE_PITCH_L
+      - J04_ANKLE_PITCH_L
+      - J05_ANKLE_ROLL_L
+      - J06_HIP_PITCH_R
+      - J07_HIP_ROLL_R
+      - J08_HIP_YAW_R
+      - J09_KNEE_PITCH_R
+      - J10_ANKLE_PITCH_R
+      - J11_ANKLE_ROLL_R
+      - J12_WAIST_YAW
+      - J13_SHOULDER_PITCH_L
+      - J14_SHOULDER_ROLL_L
+      - J15_SHOULDER_YAW_L
+      - J16_ELBOW_PITCH_L
+      - J17_ELBOW_YAW_L
+      - J18_SHOULDER_PITCH_R
+      - J19_SHOULDER_ROLL_R
+      - J20_SHOULDER_YAW_R
+      - J21_ELBOW_PITCH_R
+      - J22_ELBOW_YAW_R
+      - J23_HEAD_YAW

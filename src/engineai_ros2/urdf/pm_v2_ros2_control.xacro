@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="pm_v2_ros2_control" params="name prefix">
+
+    <ros2_control name="${name}" type="system">
+      <hardware>
+        <plugin>engineai_hardware_interface/EngineAI_SystemPositionOnlyHardware</plugin>
+        <param name="example_param_hw_start_duration_sec">0</param>
+        <param name="example_param_hw_stop_duration_sec">3.0</param>
+        <param name="example_param_hw_slowdown">100</param>
+
+	<!-- stiffness=80: high enough to move joints via incremental JTC commands,
+	     low enough to avoid aggressive snapping from rqt goal preemption.
+	     (examples use 20.0 because they send large single-step targets;
+	      JTC sends fine increments so a higher value is needed.) -->
+	<param name="default_stiffness">80.0</param>
+	<param name="default_damping">2.0</param>
+      </hardware>
+
+      <!-- Left leg joints (state-only — controlled by onboard RL locomotion controller) -->
+      <joint name="J00_HIP_PITCH_L">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J01_HIP_ROLL_L">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J02_HIP_YAW_L">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J03_KNEE_PITCH_L">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J04_ANKLE_PITCH_L">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J05_ANKLE_ROLL_L">
+	<state_interface name="position"/>
+      </joint>
+
+      <!-- Right leg joints (state-only — controlled by onboard RL locomotion controller) -->
+      <joint name="J06_HIP_PITCH_R">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J07_HIP_ROLL_R">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J08_HIP_YAW_R">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J09_KNEE_PITCH_R">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J10_ANKLE_PITCH_R">
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J11_ANKLE_ROLL_R">
+	<state_interface name="position"/>
+      </joint>
+
+      <!-- Upper body joints (command + state) -->
+      <joint name="J12_WAIST_YAW">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J13_SHOULDER_PITCH_L">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J14_SHOULDER_ROLL_L">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J15_SHOULDER_YAW_L">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J16_ELBOW_PITCH_L">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J17_ELBOW_YAW_L">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J18_SHOULDER_PITCH_R">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J19_SHOULDER_ROLL_R">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J20_SHOULDER_YAW_R">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J21_ELBOW_PITCH_R">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J22_ELBOW_YAW_R">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+      <joint name="J23_HEAD_YAW">
+	<command_interface name="position"/>
+	<command_interface name="velocity"/>
+	<state_interface name="position"/>
+      </joint>
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>
